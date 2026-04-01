@@ -13,7 +13,7 @@ const produtos = [
   { id:8, nome:"Pulseira Fita De Linon",    cat:"Macramés",  preco:1600.00, antigo:1800.00, desconto:29, img:"img/P-7.jfif", destaque:false },
   { id:9, nome:"Pulseira Macramé",        cat:"Macramés",  preco:700.00, antigo:1000.00, desconto:20, img:"img/P-13.jfif", destaque:false },
   { id:10,nome:"Pulseira Macramé ",      cat:"Macramés",  preco:800.00, antigo:null,  desconto:0,  img:"img/P-9.jfif", destaque:false },
-  { id:11,nome:"Pulseira Macramé",         cat:"Macramés",    preco:700.00, antigo:1200.00, desconto:24, img:"img/P-10.jfif", destaque:false },
+  { id:11,nome:"Pulseira Terços personalizados",         cat:"Macramés",    preco:2000.00, antigo:null, desconto:24, img:"img/P-17.jpeg", destaque:false },
   { id:12,nome:"Pulseira Macramé Simples",     cat:"Macramés",  preco:700.00, antigo:1000.00, desconto:18, img:"img/P-11.jfif", destaque:false },
 ];
 
@@ -170,12 +170,12 @@ function fecharCarrinho() {
 // ── Finalizar WHATSAPP ───
 function finalizarWhatsApp() {
   if (carrinho.length === 0) { showToast("Seu carrinho está vazio!"); return; }
-  const total = carrinho.reduce((s,i)=>s+i.preco*i.qty,0);
+  const total = carrinho.reduce((s,i)=>s+i.preco+i.qty,0);
   let msg = "Olá! Gostaria de fazer um pedido:\n\n";
   carrinho.forEach(i => {
-    msg += `• ${i.nome} (x${i.qty}) — R$ ${(i.preco*i.qty).toFixed(2).replace('.',',')}\n`;
+    msg += `• ${i.nome} (x${i.qty}) — Kz ${(i.preco+i.qty).toFixed(2).replace('.',',')}\n`;
   });
-  msg += `\n*Total: R$ ${total.toFixed(2).replace('.',',')}*`;
+  msg += `\n*Total: Kz ${total.toFixed(2).replace('.',',')}*`;
   const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   window.open(url,"_blank");
 }
